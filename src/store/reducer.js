@@ -1,18 +1,32 @@
 import * as actionTypes from './actions';
 import config from './../config';
+import {
+    CLEAR_MESSAGE,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    LOGOUT,
+    REGISTER_FAIL,
+    REGISTER_SUCCESS,
+    SET_MESSAGE
+} from "../actions/types";
+
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
     isOpen: [], //for active default menu
     isTrigger: [], //for active default menu, set blank for horizontal
     ...config,
     isFullScreen: false, // static can't change
+    user: user ? user : null,
+    isLoggedIn: user ? true : false,
 };
 
-const reducer = (state = initialState, action) => {
+export default function (state = initialState, action) {
     let trigger = [];
     let open = [];
+    const { type, payload } = action;
 
-    switch (action.type) {
+    switch (type) {
         case actionTypes.COLLAPSE_MENU:
             return {
                 ...state,
@@ -83,9 +97,40 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 layout: action.layout
             };
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: false,
+            };
+        case REGISTER_FAIL:
+            return {
+                ...state,
+                isLoggedIn: false,
+            };
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: true,
+                user: payload.user,
+            };
+        case LOGIN_FAIL:
+            return {
+                ...state,
+                isLoggedIn: false,
+                user: null,
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                isLoggedIn: false,
+                user: null,
+            };
+        case SET_MESSAGE:
+            return { message: payload };
+
+        case CLEAR_MESSAGE:
+            return { message: "" };
         default:
             return state;
     }
 };
-
-export default reducer;

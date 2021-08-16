@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {getAll} from "../../services/Api";
 import Aux from "../../hoc/_Aux";
 import {Button, Card, Col, Row} from "react-bootstrap";
-import {Table} from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
 
 export default function Roles() {
     const [roles, setRoles] = useState([]);
@@ -18,19 +18,13 @@ export default function Roles() {
         loadRoles();
     }, [loadRoles]);
 
-    console.log(roles);
-    let orgRows = null;
-    if (roles && roles.length > 0) {
-        orgRows = roles.map((org, index) => (
-            <Table.Row key={org.id}>
-                <Table.Cell>{org.name}</Table.Cell>
-                <Table.Cell>{org.createdAt}</Table.Cell>
-            </Table.Row>
-        ));
+    const routeChange = () => {
+        let path = `new-role`;
+        history.push(path);
     }
 
-    const routeChange = () =>{
-        let path = `new-role`;
+    const onRoleEdit = (role) => {
+        let path = `new-role/${role.id}`;
         history.push(path);
     }
 
@@ -58,9 +52,24 @@ export default function Roles() {
                                             <Table.Row>
                                                 <Table.HeaderCell>NAME</Table.HeaderCell>
                                                 <Table.HeaderCell>DATE CREATED</Table.HeaderCell>
+                                                <Table.HeaderCell>ACTIONS</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
-                                        <Table.Body>{orgRows}</Table.Body>
+                                        <Table.Body>
+                                            {
+                                                roles.map((role, index) => (
+                                                    <Table.Row key={role.id}>
+                                                        <Table.Cell>{role.name}</Table.Cell>
+                                                        <Table.Cell>{role.createdAt}</Table.Cell>
+                                                        <Table.Cell>
+                                                            <Button variant="primary" onClick={() => onRoleEdit(role)}>
+                                                                <i className="feather icon-edit" />
+                                                            </Button>
+                                                        </Table.Cell>
+                                                    </Table.Row>
+                                                ))
+                                            }
+                                        </Table.Body>
                                     </Table>
                                 </Col>
                             </Row>

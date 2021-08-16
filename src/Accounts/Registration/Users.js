@@ -18,22 +18,13 @@ export default function Users() {
         loadUsers();
     }, [loadUsers]);
 
-    let orgRows = null;
-    if (users && users.length > 0) {
-        orgRows = users.map((org, index) => (
-            <Table.Row key={org.id}>
-                <Table.Cell>{org.firstName}</Table.Cell>
-                <Table.Cell>{org.middleName}</Table.Cell>
-                <Table.Cell>{org.lastName}</Table.Cell>
-                <Table.Cell>{org.email}</Table.Cell>
-                <Table.Cell>{org.phone}</Table.Cell>
-                <Table.Cell>{org.createdAt}</Table.Cell>
-            </Table.Row>
-        ));
-    }
-
     const routeChange = () =>{
         let path = `new-user`;
+        history.push(path);
+    }
+
+    const onUserEdit = (org) => {
+        let path = `new-user/${org.id}`;
         history.push(path);
     }
 
@@ -65,9 +56,28 @@ export default function Users() {
                                                 <Table.HeaderCell>EMAIL</Table.HeaderCell>
                                                 <Table.HeaderCell>PHONE</Table.HeaderCell>
                                                 <Table.HeaderCell>DATE CREATED</Table.HeaderCell>
+                                                <Table.HeaderCell>ACTIONS</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
-                                        <Table.Body>{orgRows}</Table.Body>
+                                        <Table.Body>
+                                            {
+                                                users.map((org, index) => (
+                                                    <Table.Row key={org.id}>
+                                                        <Table.Cell>{org.firstName}</Table.Cell>
+                                                        <Table.Cell>{org.middleName}</Table.Cell>
+                                                        <Table.Cell>{org.lastName}</Table.Cell>
+                                                        <Table.Cell>{org.email}</Table.Cell>
+                                                        <Table.Cell>{org.phone}</Table.Cell>
+                                                        <Table.Cell>{org.createdAt}</Table.Cell>
+                                                        <Table.Cell>
+                                                            <Button variant="primary" onClick={() => onUserEdit(org)}>
+                                                                <i className="feather icon-edit" />
+                                                            </Button>
+                                                        </Table.Cell>
+                                                    </Table.Row>
+                                                ))
+                                            }
+                                        </Table.Body>
                                     </Table>
                                 </Col>
                             </Row>

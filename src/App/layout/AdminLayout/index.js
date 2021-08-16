@@ -91,7 +91,8 @@ const mapStateToProps = state => {
         isFullScreen: state.isFullScreen,
         collapseMenu: state.collapseMenu,
         configBlock: state.configBlock,
-        layout: state.layout
+        layout: state.layout,
+        user: state.user
     }
 };
 

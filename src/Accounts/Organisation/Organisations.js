@@ -18,22 +18,13 @@ export default function Organisations() {
         loadOrganisations();
     }, [loadOrganisations]);
 
-    let orgRows = null;
-    if (organisations && organisations.length > 0) {
-        orgRows = organisations.map((org, index) => (
-            <Table.Row key={org.id}>
-                <Table.Cell>{org.name}</Table.Cell>
-                <Table.Cell>{org.description}</Table.Cell>
-                <Table.Cell>{org.contact}</Table.Cell>
-                <Table.Cell>{org.email}</Table.Cell>
-                <Table.Cell>{org.phone}</Table.Cell>
-                <Table.Cell>{org.createdAt}</Table.Cell>
-            </Table.Row>
-        ));
-    }
-
     const routeChange = () =>{
         let path = `new-organisation`;
+        history.push(path);
+    }
+
+    const onOrganisationEdit = (org) => {
+        let path = `new-organisation/${org.id}`;
         history.push(path);
     }
 
@@ -65,9 +56,28 @@ export default function Organisations() {
                                                 <Table.HeaderCell>EMAIL</Table.HeaderCell>
                                                 <Table.HeaderCell>PHONE</Table.HeaderCell>
                                                 <Table.HeaderCell>DATE CREATED</Table.HeaderCell>
+                                                <Table.HeaderCell>ACTIONS</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
-                                        <Table.Body>{orgRows}</Table.Body>
+                                        <Table.Body>
+                                            {
+                                                organisations.map((org, index) => (
+                                                    <Table.Row key={org.id}>
+                                                        <Table.Cell>{org.name}</Table.Cell>
+                                                        <Table.Cell>{org.description}</Table.Cell>
+                                                        <Table.Cell>{org.contact}</Table.Cell>
+                                                        <Table.Cell>{org.email}</Table.Cell>
+                                                        <Table.Cell>{org.phone}</Table.Cell>
+                                                        <Table.Cell>{org.createdAt}</Table.Cell>
+                                                        <Table.Cell>
+                                                            <Button variant="primary" onClick={() => onOrganisationEdit(org)}>
+                                                                <i className="feather icon-edit" />
+                                                            </Button>
+                                                        </Table.Cell>
+                                                    </Table.Row>
+                                                ))
+                                            }
+                                        </Table.Body>
                                     </Table>
                                 </Col>
                             </Row>

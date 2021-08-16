@@ -53,10 +53,13 @@ const routes = [
     { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     { path: '/registration/users', exact: true, name: 'New User', component: Users },
     { path: '/registration/new-user', exact: true, name: 'New User', component: NewUser },
+    { path: '/registration/new-user/:id', exact: true, name: 'New User', component: NewUser },
     { path: '/registration/new-organisation', exact: true, name: 'New Organisation', component: NewOrganisation },
+    { path: '/registration/new-organisation/:id', exact: true, name: 'New Organisation', component: NewOrganisation },
     { path: '/registration/organisations', exact: true, name: 'Organisations', component: Organisations },
     { path: '/registration/roles', exact: true, name: 'Roles', component: Roles },
     { path: '/registration/new-role', exact: true, name: 'New Role', component: NewRole },
+    { path: '/registration/new-role/:id', exact: true, name: 'New Role', component: NewRole },
     { path: '/docs', exact: true, name: 'Documentation', component: OtherDocs },
 ];
 
