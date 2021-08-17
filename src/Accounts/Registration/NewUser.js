@@ -84,9 +84,12 @@ export default function NewUser() {
                 setPhone(userRes.phone);
                 setValue('phone', userRes.phone);
                 if (userRes.roles && userRes.roles.length > 0) {
-                    console.log(userRes.roles[0].id);
                     setRole(userRes.roles[0].id);
                     setValue('role', userRes.roles[0].id);
+                }
+                if (userRes.organisation) {
+                    setOrganisation(userRes.organisation.id);
+                    setValue("Organisation", userRes.organisation.id);
                 }
             }
         }
