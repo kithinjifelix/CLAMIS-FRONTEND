@@ -8,11 +8,11 @@ import {useHistory, useParams } from "react-router-dom";
 
 export default function NewOrganisation() {
     const { register, setValue, handleSubmit, formState: {errors} } = useForm();
-    const [name, setName] = useState({});
-    const [description, setDescription] = useState({});
-    const [contact, setContact] = useState({});
-    const [email, setEmail] = useState({});
-    const [phone, setPhone] = useState({});
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [contact, setContact] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const history = useHistory();
     const params = useParams();
 

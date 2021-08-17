@@ -34,8 +34,7 @@ export default function NewUser() {
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
 
-    const {register, setValue, handleSubmit, formState } = useForm(formOptions);
-    const { errors } = formState;
+    const {register, setValue, handleSubmit, formState: {errors} } = useForm(formOptions);
     const [organisations, setOrganisations] = useState([]);
     const [roles, setRoles] = useState([]);
     const [firstName, setFirstName] = useState("");
@@ -48,11 +47,10 @@ export default function NewUser() {
     const history = useHistory();
 
     const onSubmit = async data => {
-        console.log(data);
         data.username = data.email;
         let result = null;
         if (params && params.id) {
-            result = await put(`users/put/${params.id}`, data);
+            result = await put(`users/put/${params.id}/${data.Organisation}/${data.role}`, data);
         } else {
             result = await post(`users/create/${data.Organisation}/${data.role}`, data);
         }
@@ -78,13 +76,18 @@ export default function NewUser() {
                 setFirstName(userRes.firstName);
                 setValue('firstName', userRes.firstName);
                 setMiddle(userRes.middleName);
-                setValue('middleName', userRes.description);
+                setValue('middleName', userRes.middleName);
                 setLastName(userRes.lastName);
                 setValue('lastName', userRes.lastName);
                 setEmail(userRes.email);
                 setValue('email', userRes.email);
                 setPhone(userRes.phone);
                 setValue('phone', userRes.phone);
+                if (userRes.roles && userRes.roles.length > 0) {
+                    console.log(userRes.roles[0].id);
+                    setRole(userRes.roles[0].id);
+                    setValue('role', userRes.roles[0].id);
+                }
             }
         }
     }, []);
@@ -110,29 +113,36 @@ export default function NewUser() {
 
     const setUserFirstName = (e) => {
         setFirstName(e.target.value);
+        setValue('firstName', e.target.value);
     }
 
     const setUserMiddleName = (e) => {
         setMiddle(e.target.value);
+        setValue('middleName', e.target.value);
     }
 
     const setUserLastName = (e) => {
         setLastName(e.target.value);
+        setValue('lastName', e.target.value);
     }
 
     const setUserOrganisation = (e) => {
         setOrganisation(e.target.value);
+        setValue('Organisation', e.target.value);
     }
 
     const setUserEmail = (e) => {
         setEmail(e.target.value);
+        setValue('email', e.target.value);
     }
 
     const setUserPhone = (e) => {
         setPhone(e.target.value);
+        setValue('phone', e.target.value);
     }
     const setUserRole = (e) => {
         setRole(e.target.value);
+        setValue('role', e.target.value);
     }
 
     return (
