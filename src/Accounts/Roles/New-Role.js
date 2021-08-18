@@ -7,31 +7,48 @@ import {Dropdown, Form, Input} from "semantic-ui-react";
 import React, {useCallback, useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
+import DualListBox from 'react-dual-listbox';
 
 export default function NewRole() {
     const { register, handleSubmit, formState: {errors} } = useForm();
     const [role, setRole] = useState('');
-    const [permission, setPermission] = useState([]);
+    const [selected, setSelected] = useState([]);
+    const [permissions, setPermissions] = useState([]);
     const history = useHistory();
     const params = useParams();
 
     const loadRole = useCallback(async () => {
         if (params && params.id) {
             const roleResult = await getAll(`roles/get/${params.id}`);
-            setRole(roleResult.name);
+            if (roleResult.status === 200) {
+                setRole(roleResult.data.name);
+            } else if (roleResult.status === 400) {
+                await Swal.fire('Oops...', roleResult.data.message, 'error');
+            }
         }
     },[]);
 
+    const loadPermissions = useCallback(async () => {
+        const result = await getAll(`permissions/get`);
+        if (result.status === 200) {
+            setPermissions(result.data);
+        } else if (result.status === 400) {
+            await Swal.fire('Oops...', result.data.message, 'error');
+        }
+    });
+
     useEffect(() => {
         loadRole();
-    }, [loadRole]);
+        loadPermissions();
+    }, []);
 
     const onSubmit = async (data) => {
+        const InData = { name: data.name, permissions: selected };
         let result = null;
         if (params && params.id) {
-            result = await put(`roles/put/${params.id}`, data);
+            result = await put(`roles/put/${params.id}`, InData);
         } else {
-            result = await post('roles/create', data);
+            result = await post('roles/create', InData);
         }
         if (result.status === 200) {
             await Swal.fire('Success', 'Successfully registered role', 'success');
@@ -45,32 +62,14 @@ export default function NewRole() {
         setRole(e.target.value)
     }
 
-    const onPermissionChange = (e) => {
-        console.log(e.target.value);
-        setPermission(e.target.value);
-        console.log(permission);
+    const onChange = (selected) => {
+        setSelected(selected);
     }
 
-    const options = [
-        { key: 'angular', text: 'Angular', value: 'angular' },
-        { key: 'css', text: 'CSS', value: 'css' },
-        { key: 'design', text: 'Graphic Design', value: 'design' },
-        { key: 'ember', text: 'Ember', value: 'ember' },
-        { key: 'html', text: 'HTML', value: 'html' },
-        { key: 'ia', text: 'Information Architecture', value: 'ia' },
-        { key: 'javascript', text: 'Javascript', value: 'javascript' },
-        { key: 'mech', text: 'Mechanical Engineering', value: 'mech' },
-        { key: 'meteor', text: 'Meteor', value: 'meteor' },
-        { key: 'node', text: 'NodeJS', value: 'node' },
-        { key: 'plumbing', text: 'Plumbing', value: 'plumbing' },
-        { key: 'python', text: 'Python', value: 'python' },
-        { key: 'rails', text: 'Rails', value: 'rails' },
-        { key: 'react', text: 'React', value: 'react' },
-        { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
-        { key: 'ruby', text: 'Ruby', value: 'ruby' },
-        { key: 'ui', text: 'UI Design', value: 'ui' },
-        { key: 'ux', text: 'User Experience', value: 'ux' },
-    ];
+    const options = [];
+    permissions.map(permission => {
+        options.push({ value: permission.id, label: permission.name });
+    });
 
     return (
         <Aux>
@@ -96,10 +95,7 @@ export default function NewRole() {
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Permissions</label>
-                                                <Dropdown {...register("permissions", { required: true })} value={permission} onChange={(e, data) => {
-                                                    setPermission(data.value);
-                                                    console.log(permission);
-                                                }} placeholder='Available Permissions' fluid multiple selection options={options} />
+                                                <DualListBox options={options} selected={selected} onChange={e => onChange(e)} />
                                             </Form.Field>
                                         </Form.Group>
                                     </Col>

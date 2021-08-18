@@ -65,12 +65,20 @@ export default function NewUser() {
 
     const loadOrganisations = useCallback(async () => {
         const organisationsResult = await getAll('organisations/get');
-        setOrganisations(organisationsResult);
+        if (organisationsResult.status === 200) {
+            setOrganisations(organisationsResult.data);
+        } else if (organisationsResult.status === 400) {
+            await Swal.fire('Oops...', organisationsResult.data.message, 'error');
+        }
     },[]);
 
     const loadRoles = useCallback(async () => {
         const rolesResult = await getAll('roles/get');
-        setRoles(rolesResult);
+        if (rolesResult.status === 200) {
+            setRoles(rolesResult.data);
+        } else if (rolesResult.status === 400) {
+            await Swal.fire('Oops...', rolesResult.data.message, 'error');
+        }
     }, []);
 
     const loadUser = useCallback(async () => {

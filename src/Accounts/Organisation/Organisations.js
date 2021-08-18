@@ -1,13 +1,15 @@
 import React, {useCallback, useEffect, useState} from "react";
 import Aux from "../../hoc/_Aux";
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import { Table } from 'semantic-ui-react';
-import {getAll} from "../../services/Api";
+import {deleteItem, getAll} from "../../services/Api";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Organisations() {
     const [organisations, setOrganisations] = useState([]);
+    const [organisation, setOrganisation] = useState([]);
+    const [isBasic, setIsBasic] = useState(false);
     const history = useHistory();
 
     const loadOrganisations = useCallback(async () => {
@@ -26,12 +28,28 @@ export default function Organisations() {
     const routeChange = () =>{
         let path = `new-organisation`;
         history.push(path);
-    }
+    };
 
     const onOrganisationEdit = (org) => {
         let path = `new-organisation/${org.id}`;
         history.push(path);
-    }
+    };
+
+    const onOrganisationDelete = (org) => {
+        setOrganisation(org);
+        setIsBasic(true);
+    };
+
+    const organisationDeleted = async () => {
+        setIsBasic(false);
+        const result = await deleteItem (`organisations/delete/${organisation.id}`);
+        if (result.status === 200) {
+            await Swal.fire('Success', 'Successfully deleted organisation', 'success');
+            window.location.reload();
+        } else if (result.status === 400) {
+            await Swal.fire('Oops...', result.data.message, 'error');
+        }
+    };
 
     return (
         <Aux>
@@ -78,6 +96,10 @@ export default function Organisations() {
                                                             <Button variant="primary" onClick={() => onOrganisationEdit(org)}>
                                                                 <i className="feather icon-edit" />
                                                             </Button>
+                                                            &nbsp;&nbsp;
+                                                            <Button variant="danger" onClick={() => onOrganisationDelete(org)}>
+                                                                <i className="feather icon-trash-2" />
+                                                            </Button>
                                                         </Table.Cell>
                                                     </Table.Row>
                                                 ))
@@ -90,6 +112,16 @@ export default function Organisations() {
                     </Card>
                 </Col>
             </Row>
+            <Modal show={isBasic} onHide={() => setIsBasic(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title as="h5">Delete Organisation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete organisation: { organisation.name }? </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setIsBasic(false)}>Close</Button>
+                    <Button variant="primary" onClick={() => organisationDeleted()}>Yes</Button>
+                </Modal.Footer>
+            </Modal>
         </Aux>
     );
 }

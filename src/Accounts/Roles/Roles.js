@@ -106,7 +106,7 @@ export default function Roles() {
             </Row>
             <Modal show={isBasic} onHide={() => setIsBasic(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title as="h5">Delete User</Modal.Title>
+                    <Modal.Title as="h5">Delete Role</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete role: { role.name }? </Modal.Body>
                 <Modal.Footer>
