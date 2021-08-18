@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import {login} from "../../../actions/auth";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {Alert} from "react-bootstrap";
 
 const required = (value) => {
     if (!value) {
@@ -22,6 +23,7 @@ const required = (value) => {
 function SignUp1() {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [isPasswordWrong, setIsPasswordWrong] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -42,9 +44,7 @@ function SignUp1() {
                 // window.location.reload();
             })
             .catch(() => {
-                this.setState({
-                    loading: false
-                });
+                setIsPasswordWrong(true);
             });
     }
 
@@ -66,6 +66,9 @@ function SignUp1() {
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
                                 <h3 className="mb-4">Login</h3>
+                                <Alert show={isPasswordWrong} variant={"danger"}>
+                                    Wrong Username or Password
+                                </Alert>
                                 <div className="input-group mb-3">
                                     <input type="email" className="form-control" placeholder="Email" value={username}
                                            onChange={onChangeUsername}

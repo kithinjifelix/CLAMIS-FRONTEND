@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {getAll, post, put} from "../../services/Api";
 import Aux from "../../hoc/_Aux";
 import {Button, Card, Col, Row} from "react-bootstrap";
-import {Dropdown, Form, Input} from "semantic-ui-react";
+import {Form, Input} from "semantic-ui-react";
 import React, {useCallback, useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
@@ -26,7 +26,7 @@ export default function NewRole() {
                 await Swal.fire('Oops...', roleResult.data.message, 'error');
             }
         }
-    },[]);
+    });
 
     const loadPermissions = useCallback(async () => {
         const result = await getAll(`permissions/get`);
@@ -40,11 +40,11 @@ export default function NewRole() {
     useEffect(() => {
         loadRole();
         loadPermissions();
-    }, []);
+    });
 
     const onSubmit = async (data) => {
         const InData = { name: data.name, permissions: selected };
-        let result = null;
+        let result;
         if (params && params.id) {
             result = await put(`roles/put/${params.id}`, InData);
         } else {
