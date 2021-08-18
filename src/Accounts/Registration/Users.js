@@ -36,10 +36,8 @@ export default function Users() {
     };
 
     const userDeleted = async () => {
-        console.log(user);
         setIsBasic(false);
         const deleteResult = await deleteItem (`users/delete/${user.id}`);
-        console.log(deleteResult);
         window.location.reload();
     }
 

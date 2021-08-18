@@ -7,6 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 import {Form, Input} from 'semantic-ui-react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import Swal from 'sweetalert2';
 
 export default function NewUser() {
     const params = useParams();
@@ -54,8 +55,11 @@ export default function NewUser() {
         } else {
             result = await post(`users/create/${data.Organisation}/${data.role}`, data);
         }
-        if (result) {
+        if (result.status === 200) {
+            await Swal.fire('Success', 'Successfully registered user', 'success');
             history.push('/registration/users');
+        } else if (result.status === 400) {
+            await Swal.fire('Oops...', result.data.message, 'error');
         }
     };
 

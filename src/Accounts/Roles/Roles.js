@@ -1,12 +1,14 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
-import {getAll} from "../../services/Api";
+import {deleteItem, getAll} from "../../services/Api";
 import Aux from "../../hoc/_Aux";
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import { Table } from "semantic-ui-react";
 
 export default function Roles() {
     const [roles, setRoles] = useState([]);
+    const [role, setRole] = useState([]);
+    const [isBasic, setIsBasic] = useState(false);
     const history = useHistory();
 
     const loadRoles = useCallback(async () => {
@@ -21,12 +23,23 @@ export default function Roles() {
     const routeChange = () => {
         let path = `new-role`;
         history.push(path);
-    }
+    };
 
     const onRoleEdit = (role) => {
         let path = `new-role/${role.id}`;
         history.push(path);
-    }
+    };
+
+    const onRoleDelete = (role) => {
+        setRole(role);
+        setIsBasic(true);
+    };
+
+    const roleDeleted = async () => {
+        setIsBasic(false);
+        const deleteResult = await deleteItem (`roles/delete/${role.id}`);
+        window.location.reload();
+    };
 
     return (
         <Aux>
@@ -65,6 +78,10 @@ export default function Roles() {
                                                             <Button variant="primary" onClick={() => onRoleEdit(role)}>
                                                                 <i className="feather icon-edit" />
                                                             </Button>
+                                                            &nbsp;&nbsp;
+                                                            <Button variant="danger" onClick={() => onRoleDelete(role)}>
+                                                                <i className="feather icon-trash-2" />
+                                                            </Button>
                                                         </Table.Cell>
                                                     </Table.Row>
                                                 ))
@@ -77,6 +94,16 @@ export default function Roles() {
                     </Card>
                 </Col>
             </Row>
+            <Modal show={isBasic} onHide={() => setIsBasic(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title as="h5">Delete User</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete role: { role.name }? </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setIsBasic(false)}>Close</Button>
+                    <Button variant="primary" onClick={() => roleDeleted()}>Yes</Button>
+                </Modal.Footer>
+            </Modal>
         </Aux>
     );
 }
