@@ -103,7 +103,7 @@ class NavRight extends Component {
                             <Dropdown.Menu alignRight className="profile-notification">
                                 <div className="pro-head">
                                     <img src={Avatar1} className="img-radius" alt="User Profile"/>
-                                    <span>{this.state.user.name}</span>
+                                    <span>{ (this.state && this.state.user) ? this.state.user.name : '' }</span>
                                     <a href={DEMO.BLANK_LINK} className="dud-logout" title="Logout" onClick={this.logOut}>
                                         <i className="feather icon-log-out"/>
                                     </a>

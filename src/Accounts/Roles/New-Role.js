@@ -22,6 +22,11 @@ export default function NewRole() {
             const roleResult = await getAll(`roles/get/${params.id}`);
             if (roleResult.status === 200) {
                 setRole(roleResult.data.name);
+                const permissions = [];
+                roleResult.data.permissions.map(obj => {
+                    permissions.push(obj.id);
+                });
+                setSelected(permissions);
             } else if (roleResult.status === 400) {
                 await Swal.fire('Oops...', roleResult.data.message, 'error');
             }
@@ -40,10 +45,10 @@ export default function NewRole() {
     useEffect(() => {
         loadRole();
         loadPermissions();
-    });
+    },[]);
 
     const onSubmit = async (data) => {
-        const InData = { name: data.name, permissions: selected };
+        const InData = { name: data.name, rolePermissions: selected };
         let result;
         if (params && params.id) {
             result = await put(`roles/put/${params.id}`, InData);
