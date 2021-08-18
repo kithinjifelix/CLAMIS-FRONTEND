@@ -13,7 +13,7 @@ export default function Organisations() {
     const loadOrganisations = useCallback(async () => {
         const organisationsResult = await getAll('organisations/get');
         if (organisationsResult.status === 200) {
-            setOrganisations(organisationsResult);
+            setOrganisations(organisationsResult.data);
         } else if (organisationsResult.status === 400) {
             await Swal.fire('Oops...', organisationsResult.data.message, 'error');
         }

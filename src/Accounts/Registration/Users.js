@@ -15,7 +15,7 @@ export default function Users() {
     const loadUsers = useCallback(async () => {
         const userResult = await getAll('users/get');
         if (userResult.status === 200) {
-            setUsers(userResult);
+            setUsers(userResult.data);
         } else if (userResult.status === 400) {
             await Swal.fire('Oops...', userResult.data.message, 'error');
         }

@@ -15,7 +15,7 @@ export default function Roles() {
     const loadRoles = useCallback(async () => {
         const rolesResult = await getAll('roles/get');
         if (rolesResult.status === 200) {
-            setRoles(rolesResult);
+            setRoles(rolesResult.data);
         } else if (rolesResult.status === 400) {
             await Swal.fire('Oops...', rolesResult.data.message, 'error');
         }
