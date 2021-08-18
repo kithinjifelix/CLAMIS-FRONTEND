@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import DualListBox from 'react-dual-listbox';
 
 export default function NewRole() {
-    const { register, handleSubmit, formState: {errors} } = useForm();
+    const { register, setValue, handleSubmit, formState: {errors} } = useForm();
     const [role, setRole] = useState('');
     const [selected, setSelected] = useState([]);
     const [permissions, setPermissions] = useState([]);
@@ -22,6 +22,7 @@ export default function NewRole() {
             const roleResult = await getAll(`roles/get/${params.id}`);
             if (roleResult.status === 200) {
                 setRole(roleResult.data.name);
+                setValue("name", roleResult.data.name);
                 const permissions = [];
                 roleResult.data.permissions.map(obj => {
                     permissions.push(obj.id);
