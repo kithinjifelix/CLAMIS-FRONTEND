@@ -6,6 +6,7 @@ import {Button, Card, Col, Row} from "react-bootstrap";
 import {Dropdown, Form, Input} from "semantic-ui-react";
 import React, {useCallback, useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 export default function NewRole() {
     const { register, handleSubmit, formState: {errors} } = useForm();
@@ -32,8 +33,11 @@ export default function NewRole() {
         } else {
             result = await post('roles/create', data);
         }
-        if (result) {
+        if (result.status === 200) {
+            await Swal.fire('Success', 'Successfully registered role', 'success');
             history.push('/registration/roles');
+        } else if (result.status === 400) {
+            await Swal.fire('Oops...', result.data.message, 'error');
         }
     };
 

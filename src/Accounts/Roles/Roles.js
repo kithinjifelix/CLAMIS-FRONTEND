@@ -4,6 +4,7 @@ import {deleteItem, getAll} from "../../services/Api";
 import Aux from "../../hoc/_Aux";
 import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import { Table } from "semantic-ui-react";
+import Swal from "sweetalert2";
 
 export default function Roles() {
     const [roles, setRoles] = useState([]);
@@ -13,7 +14,11 @@ export default function Roles() {
 
     const loadRoles = useCallback(async () => {
         const rolesResult = await getAll('roles/get');
-        setRoles(rolesResult);
+        if (rolesResult.status === 200) {
+            setRoles(rolesResult);
+        } else if (rolesResult.status === 400) {
+            await Swal.fire('Oops...', rolesResult.data.message, 'error');
+        }
     },[]);
 
     useEffect(() => {
@@ -38,7 +43,12 @@ export default function Roles() {
     const roleDeleted = async () => {
         setIsBasic(false);
         const deleteResult = await deleteItem (`roles/delete/${role.id}`);
-        window.location.reload();
+        if (deleteResult.status === 200) {
+            await Swal.fire('Success', 'Successfully deleted role', 'success');
+            window.location.reload();
+        } else if (deleteResult.status === 400) {
+            await Swal.fire('Oops...', deleteResult.data.message, 'error');
+        }
     };
 
     return (

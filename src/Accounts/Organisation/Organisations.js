@@ -4,6 +4,7 @@ import {Button, Card, Col, Row} from "react-bootstrap";
 import { Table } from 'semantic-ui-react';
 import {getAll} from "../../services/Api";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Organisations() {
     const [organisations, setOrganisations] = useState([]);
@@ -11,7 +12,11 @@ export default function Organisations() {
 
     const loadOrganisations = useCallback(async () => {
         const organisationsResult = await getAll('organisations/get');
-        setOrganisations(organisationsResult);
+        if (organisationsResult.status === 200) {
+            setOrganisations(organisationsResult);
+        } else if (organisationsResult.status === 400) {
+            await Swal.fire('Oops...', organisationsResult.data.message, 'error');
+        }
     },[]);
 
     useEffect(() => {

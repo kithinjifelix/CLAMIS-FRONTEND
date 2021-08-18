@@ -10,11 +10,10 @@ export const getAll = async (endpoint, params) => {
     
     try {
         const response = await request;
-        return response.data;
+        return { status: 200, data: response.data };
     } catch (e) {
-        console.log(e);
+        return { status: 400, data: e.response.data};
     }
-    return [];
 }
 
 export const post = async (endpoint, data) => {
@@ -43,11 +42,10 @@ export const put = async (endpoint, data) => {
 
     try {
         const response = await request;
-        return response.data;
+        return { status: 200, data: response.data};
     } catch (e) {
-        console.log(e);
+        return { status: 400, data: e.response.data};
     }
-    return [];
 };
 
 export const deleteItem = async (endpoint) => {
@@ -59,8 +57,8 @@ export const deleteItem = async (endpoint) => {
     
     try {
         const response = await request;
-        return response.data;
+        return { status: 200, data: response.data};
     } catch (e) {
-        console.log(e);
+        return { status: 400, data: e.response.data};
     }
 }

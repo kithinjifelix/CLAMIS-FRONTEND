@@ -5,6 +5,7 @@ import {Button, Card, Col, Row} from "react-bootstrap";
 import { Form, TextArea, Input } from 'semantic-ui-react';
 import {getAll, post, put} from "../../services/Api";
 import {useHistory, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function NewOrganisation() {
     const { register, setValue, handleSubmit, formState: {errors} } = useForm();
@@ -46,7 +47,13 @@ export default function NewOrganisation() {
             result = await post('organisations/create', data);
         }
         if (result) {
+
+        }
+        if (result.status === 200) {
+            await Swal.fire('Success', 'Successfully registered organisation', 'success');
             history.push('/registration/organisations');
+        } else if (result.status === 400) {
+            await Swal.fire('Oops...', result.data.message, 'error');
         }
     };
 

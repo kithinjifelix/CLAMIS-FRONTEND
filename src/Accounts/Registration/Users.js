@@ -4,6 +4,7 @@ import Aux from "../../hoc/_Aux";
 import { useHistory } from "react-router-dom";
 import {getAll, deleteItem} from "../../services/Api";
 import {Table} from "semantic-ui-react";
+import Swal from "sweetalert2";
 
 export default function Users() {
     const [users, setUsers] = useState([]);
@@ -13,7 +14,11 @@ export default function Users() {
 
     const loadUsers = useCallback(async () => {
         const userResult = await getAll('users/get');
-        setUsers(userResult);
+        if (userResult.status === 200) {
+            setUsers(userResult);
+        } else if (userResult.status === 400) {
+            await Swal.fire('Oops...', userResult.data.message, 'error');
+        }
     },[]);
 
     useEffect(() => {
@@ -38,7 +43,12 @@ export default function Users() {
     const userDeleted = async () => {
         setIsBasic(false);
         const deleteResult = await deleteItem (`users/delete/${user.id}`);
-        window.location.reload();
+        if (deleteResult.status === 200) {
+            await Swal.fire('Success', 'Successfully deleted user', 'success');
+            window.location.reload();
+        } else if (deleteResult.status === 400) {
+            await Swal.fire('Oops...', deleteResult.data.message, 'error');
+        }
     }
 
     return (
