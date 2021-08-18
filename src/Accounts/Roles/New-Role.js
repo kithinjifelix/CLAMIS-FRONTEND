@@ -3,13 +3,14 @@ import {useHistory} from "react-router-dom";
 import {getAll, post, put} from "../../services/Api";
 import Aux from "../../hoc/_Aux";
 import {Button, Card, Col, Row} from "react-bootstrap";
-import { Form, Input } from "semantic-ui-react";
+import {Dropdown, Form, Input} from "semantic-ui-react";
 import React, {useCallback, useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 
 export default function NewRole() {
     const { register, handleSubmit, formState: {errors} } = useForm();
     const [role, setRole] = useState('');
+    const [permission, setPermission] = useState([]);
     const history = useHistory();
     const params = useParams();
 
@@ -40,6 +41,33 @@ export default function NewRole() {
         setRole(e.target.value)
     }
 
+    const onPermissionChange = (e) => {
+        console.log(e.target.value);
+        setPermission(e.target.value);
+        console.log(permission);
+    }
+
+    const options = [
+        { key: 'angular', text: 'Angular', value: 'angular' },
+        { key: 'css', text: 'CSS', value: 'css' },
+        { key: 'design', text: 'Graphic Design', value: 'design' },
+        { key: 'ember', text: 'Ember', value: 'ember' },
+        { key: 'html', text: 'HTML', value: 'html' },
+        { key: 'ia', text: 'Information Architecture', value: 'ia' },
+        { key: 'javascript', text: 'Javascript', value: 'javascript' },
+        { key: 'mech', text: 'Mechanical Engineering', value: 'mech' },
+        { key: 'meteor', text: 'Meteor', value: 'meteor' },
+        { key: 'node', text: 'NodeJS', value: 'node' },
+        { key: 'plumbing', text: 'Plumbing', value: 'plumbing' },
+        { key: 'python', text: 'Python', value: 'python' },
+        { key: 'rails', text: 'Rails', value: 'rails' },
+        { key: 'react', text: 'React', value: 'react' },
+        { key: 'repair', text: 'Kitchen Repair', value: 'repair' },
+        { key: 'ruby', text: 'Ruby', value: 'ruby' },
+        { key: 'ui', text: 'UI Design', value: 'ui' },
+        { key: 'ux', text: 'User Experience', value: 'ux' },
+    ];
+
     return (
         <Aux>
             <Row>
@@ -57,6 +85,17 @@ export default function NewRole() {
                                                 <label>Name</label>
                                                 <Input {...register("name", { required: true })} value={role} onChange={setRoleName} type="text"  />
                                                 {errors.name && <span className="text-danger">This field is required</span>}
+                                            </Form.Field>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col md={4}>
+                                        <Form.Group widths='equal'>
+                                            <Form.Field>
+                                                <label>Permissions</label>
+                                                <Dropdown {...register("permissions", { required: true })} value={permission} onChange={(e, data) => {
+                                                    setPermission(data.value);
+                                                    console.log(permission);
+                                                }} placeholder='Available Permissions' fluid multiple selection options={options} />
                                             </Form.Field>
                                         </Form.Group>
                                     </Col>

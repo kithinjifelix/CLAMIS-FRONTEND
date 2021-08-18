@@ -50,3 +50,18 @@ export const put = async (endpoint, data) => {
     }
     return [];
 };
+
+export const deleteItem = async (endpoint) => {
+    let request = axios({
+        method: 'delete',
+        url: `${config.backendURI}/${endpoint}`,
+        headers: authHeader()
+    });
+    
+    try {
+        const response = await request;
+        return response.data;
+    } catch (e) {
+        console.log(e);
+    }
+}

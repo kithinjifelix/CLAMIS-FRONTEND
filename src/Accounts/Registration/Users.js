@@ -1,12 +1,14 @@
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import React, {useCallback, useEffect, useState} from "react";
 import Aux from "../../hoc/_Aux";
 import { useHistory } from "react-router-dom";
-import {getAll} from "../../services/Api";
+import {getAll, deleteItem} from "../../services/Api";
 import {Table} from "semantic-ui-react";
 
 export default function Users() {
     const [users, setUsers] = useState([]);
+    const [user, setUser] = useState([]);
+    const [isBasic, setIsBasic] = useState(false);
     const history = useHistory();
 
     const loadUsers = useCallback(async () => {
@@ -23,9 +25,22 @@ export default function Users() {
         history.push(path);
     }
 
-    const onUserEdit = (org) => {
-        let path = `new-user/${org.id}`;
+    const onUserEdit = (user) => {
+        let path = `new-user/${user.id}`;
         history.push(path);
+    }
+
+    const onUserDelete = (user) => {
+        setUser(user);
+        setIsBasic(true);
+    };
+
+    const userDeleted = async () => {
+        console.log(user);
+        setIsBasic(false);
+        const deleteResult = await deleteItem (`users/delete/${user.id}`);
+        console.log(deleteResult);
+        window.location.reload();
     }
 
     return (
@@ -61,17 +76,21 @@ export default function Users() {
                                         </Table.Header>
                                         <Table.Body>
                                             {
-                                                users.map((org, index) => (
-                                                    <Table.Row key={org.id}>
-                                                        <Table.Cell>{org.firstName}</Table.Cell>
-                                                        <Table.Cell>{org.middleName}</Table.Cell>
-                                                        <Table.Cell>{org.lastName}</Table.Cell>
-                                                        <Table.Cell>{org.email}</Table.Cell>
-                                                        <Table.Cell>{org.phone}</Table.Cell>
-                                                        <Table.Cell>{org.createdAt}</Table.Cell>
+                                                users.map((user, index) => (
+                                                    <Table.Row key={user.id}>
+                                                        <Table.Cell>{user.firstName}</Table.Cell>
+                                                        <Table.Cell>{user.middleName}</Table.Cell>
+                                                        <Table.Cell>{user.lastName}</Table.Cell>
+                                                        <Table.Cell>{user.email}</Table.Cell>
+                                                        <Table.Cell>{user.phone}</Table.Cell>
+                                                        <Table.Cell>{user.createdAt}</Table.Cell>
                                                         <Table.Cell>
-                                                            <Button variant="primary" onClick={() => onUserEdit(org)}>
+                                                            <Button variant="primary" onClick={() => onUserEdit(user)}>
                                                                 <i className="feather icon-edit" />
+                                                            </Button>
+                                                            &nbsp;&nbsp;
+                                                            <Button variant="danger" onClick={() => onUserDelete(user)}>
+                                                                <i className="feather icon-trash-2" />
                                                             </Button>
                                                         </Table.Cell>
                                                     </Table.Row>
@@ -85,6 +104,16 @@ export default function Users() {
                     </Card>
                 </Col>
             </Row>
+            <Modal show={isBasic} onHide={() => setIsBasic(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title as="h5">Delete User</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete { user.firstName + " " + user.middleName + " " + user.lastName }? </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setIsBasic(false)}>Close</Button>
+                    <Button variant="primary" onClick={() => userDeleted()}>Yes</Button>
+                </Modal.Footer>
+            </Modal>
         </Aux>
     );
 }
