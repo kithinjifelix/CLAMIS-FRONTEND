@@ -1,11 +1,10 @@
 import axios from "axios";
-import config from "../config";
-import authHeader from './auth-header';
+import { CONFIG } from "../config/constant";
 
 export const getAll = async (endpoint, params) => {
-    let request = axios.get(`${config.backendURI}/${endpoint}`, { headers: authHeader() });
+    let request = axios.get(`${CONFIG.backendURI}/${endpoint}`);
     if (params) {
-        request = axios.get(`${config.backendURI}/${endpoint}`, { params: params, headers: authHeader() });
+        request = axios.get(`${CONFIG.backendURI}/${endpoint}`, { params: params });
     }
     
     try {
@@ -19,9 +18,8 @@ export const getAll = async (endpoint, params) => {
 export const post = async (endpoint, data) => {
     let request = axios({
         method: 'post',
-        url: `${config.backendURI}/${endpoint}`,
-        data: data,
-        headers: authHeader()
+        url: `${CONFIG.backendURI}/${endpoint}`,
+        data: data
     });
 
     try {
@@ -35,9 +33,8 @@ export const post = async (endpoint, data) => {
 export const put = async (endpoint, data) => {
     let request = axios({
         method: 'put',
-        url: `${config.backendURI}/${endpoint}`,
-        data: data,
-        headers: authHeader()
+        url: `${CONFIG.backendURI}/${endpoint}`,
+        data: data
     });
 
     try {
@@ -51,8 +48,7 @@ export const put = async (endpoint, data) => {
 export const deleteItem = async (endpoint) => {
     let request = axios({
         method: 'delete',
-        url: `${config.backendURI}/${endpoint}`,
-        headers: authHeader()
+        url: `${CONFIG.backendURI}/${endpoint}`
     });
     
     try {
