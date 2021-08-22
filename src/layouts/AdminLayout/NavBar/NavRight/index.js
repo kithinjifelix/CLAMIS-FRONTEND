@@ -33,7 +33,7 @@ const NavRight = () => {
                         <Dropdown.Menu alignRight className="profile-notification">
                             <div className="pro-head">
                                 <img src={avatar1} className="img-radius" alt="User Profile"/>
-                                <span>{ user.firstName + " " + user.middleName + " " + user.lastName }</span>
+                                <span>{ user.name ? user.name : (user.firstName + " " + user.middleName + " " + user.lastName) }</span>
                                 <Link to='#' className="dud-logout" title="Logout" onClick={handleLogout}>
                                     <i className="feather icon-log-out"/>
                                 </Link>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="">
+    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="hidden class">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/template.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/AdminLayout/NavBar/NavRight/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/AdminLayout/NavBar/NavRight/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/signin/JWTLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/signin/JWTLogin.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,11 +38,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629618632703</updated>
-      <workItem from="1629618636851" duration="997000" />
+      <workItem from="1629618636851" duration="1287000" />
     </task>
+    <task id="LOCAL-00001" summary="hidden class">
+      <created>1629640918656</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629640918656</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hidden class" />
+    <option name="LAST_COMMIT_MESSAGE" value="hidden class" />
   </component>
 </project>
