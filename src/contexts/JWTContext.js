@@ -19,8 +19,6 @@ const verifyToken = (serviceToken) => {
   }
 
   const decoded = jwtDecode(serviceToken);
-  console.log(decoded);
-  console.log((Date.now()/1000));
   return decoded.exp > (Date.now() / 1000);
 };
 
@@ -75,12 +73,9 @@ export const JWTProvider = ({ children }) => {
   };
 
   const hasPermission = (permission) => {
-    console.log(permission);
     const { user } = state;
-    console.log(user);
     if (user && user.roles.length > 0) {
       const foundPermissions = user.roles[0].permissions.filter(obj => obj.name === permission);
-      console.log(foundPermissions);
       if (foundPermissions.length > 0) {
         return true;
       }
