@@ -34,7 +34,7 @@ const NavCollapse = ({ collapse, type }) => {
                 case 'collapse':
                     return <LoopNavCollapse key={item.id} collapse={item} type="sub" />;
                 case 'item':
-                    if (hasPermission(item.permission)) {
+                    if (item && item.permission && hasPermission(item.permission)) {
                         return <NavItem layout={layout} key={item.id} item={item} />;
                     } else {
                         return false;
