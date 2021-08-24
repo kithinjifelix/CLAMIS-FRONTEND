@@ -4,11 +4,13 @@ import { useHistory } from "react-router-dom";
 import {getAll, deleteItem} from "../../../services/Api";
 import {Table} from "semantic-ui-react";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 export default function Users() {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState([]);
     const [isBasic, setIsBasic] = useState(false);
+    const { hasPermission } = useAuth();
     const history = useHistory();
 
     const loadUsers = useCallback(async () => {
@@ -61,7 +63,7 @@ export default function Users() {
                         <Card.Body>
                             <Row>
                                 <Col md={4}>
-                                    <Button variant="primary" onClick={routeChange}>
+                                    <Button variant="primary" onClick={routeChange} className={ hasPermission('Accounts-Users-Create') ? undefined : 'hidden' }>
                                         <i className="feather icon-plus-circle"/>
                                         New User
                                     </Button>
@@ -92,11 +94,11 @@ export default function Users() {
                                                         <Table.Cell>{user.phone}</Table.Cell>
                                                         <Table.Cell>{user.createdAt}</Table.Cell>
                                                         <Table.Cell>
-                                                            <Button variant="primary" onClick={() => onUserEdit(user)}>
+                                                            <Button variant="primary" onClick={() => onUserEdit(user)} className={ hasPermission('Accounts-Users-Update') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-edit" />
                                                             </Button>
                                                             &nbsp;&nbsp;
-                                                            <Button variant="danger" onClick={() => onUserDelete(user)}>
+                                                            <Button variant="danger" onClick={() => onUserDelete(user)} className={ hasPermission('Accounts-Users-Delete') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-trash-2" />
                                                             </Button>
                                                         </Table.Cell>

@@ -7,6 +7,7 @@ import {Form, Input} from 'semantic-ui-react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
+import useAuth from "../../../hooks/useAuth";
 
 export default function NewUser() {
     const params = useParams();
@@ -44,6 +45,7 @@ export default function NewUser() {
     const [phone, setPhone] = useState("");
     const [Organisation, setOrganisation] = useState("");
     const [role, setRole] = useState("");
+    const { hasPermission } = useAuth();
     const history = useHistory();
 
     const onSubmit = async data => {
@@ -274,7 +276,7 @@ export default function NewUser() {
 
                                 <Row>
                                     <Col md={4}>
-                                        <Button variant="primary" type="submit">
+                                        <Button variant="primary" type="submit" className={ hasPermission('Accounts-Users-Create') ? undefined : 'hidden' }>
                                             <i className="feather icon-plus-circle"/>
                                             Submit
                                         </Button>

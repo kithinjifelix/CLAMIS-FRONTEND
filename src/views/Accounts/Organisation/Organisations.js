@@ -4,11 +4,13 @@ import { Table } from 'semantic-ui-react';
 import {deleteItem, getAll} from "../../../services/Api";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 export default function Organisations() {
     const [organisations, setOrganisations] = useState([]);
     const [organisation, setOrganisation] = useState([]);
     const [isBasic, setIsBasic] = useState(false);
+    const { hasPermission } = useAuth();
     const history = useHistory();
 
     const loadOrganisations = useCallback(async () => {
@@ -61,7 +63,7 @@ export default function Organisations() {
                         <Card.Body>
                             <Row>
                                 <Col md={4}>
-                                    <Button variant="primary" onClick={routeChange}>
+                                    <Button variant="primary" onClick={routeChange} className={ hasPermission('Accounts-Organisations-Create') ? undefined : 'hidden' }>
                                         <i className="feather icon-plus-circle"/>
                                         New Organisation
                                     </Button>
@@ -92,11 +94,11 @@ export default function Organisations() {
                                                         <Table.Cell>{org.phone}</Table.Cell>
                                                         <Table.Cell>{org.createdAt}</Table.Cell>
                                                         <Table.Cell>
-                                                            <Button variant="primary" onClick={() => onOrganisationEdit(org)}>
+                                                            <Button variant="primary" onClick={() => onOrganisationEdit(org)} className={ hasPermission('Accounts-Organisations-Update') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-edit" />
                                                             </Button>
                                                             &nbsp;&nbsp;
-                                                            <Button variant="danger" onClick={() => onOrganisationDelete(org)}>
+                                                            <Button variant="danger" onClick={() => onOrganisationDelete(org)} className={ hasPermission('Accounts-Organisations-Delete') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-trash-2" />
                                                             </Button>
                                                         </Table.Cell>

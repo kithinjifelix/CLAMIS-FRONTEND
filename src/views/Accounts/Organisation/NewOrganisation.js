@@ -5,6 +5,7 @@ import { Form, TextArea, Input } from 'semantic-ui-react';
 import {getAll, post, put} from "../../../services/Api";
 import {useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 export default function NewOrganisation() {
     const { register, setValue, handleSubmit, formState: {errors} } = useForm();
@@ -13,6 +14,7 @@ export default function NewOrganisation() {
     const [contact, setContact] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const { hasPermission } = useAuth();
     const history = useHistory();
     const params = useParams();
 
@@ -144,7 +146,7 @@ export default function NewOrganisation() {
 
                                 <Row>
                                     <Col md={4}>
-                                        <Button variant="primary" type="submit">
+                                        <Button variant="primary" type="submit" className={ hasPermission('Accounts-Organisations-Create') ? undefined : 'hidden' }>
                                             <i className="feather icon-plus-circle"/>
                                             Submit
                                         </Button>

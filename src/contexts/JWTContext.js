@@ -37,12 +37,12 @@ const setSession = (serviceToken) => {
 const JWTContext = createContext({
   ...initialState,
   login: () => Promise.resolve(),
-  logout: () => { }
+  logout: () => { },
+  hasPermission: () => { },
 });
 
 export const JWTProvider = ({ children }) => {
   const [state, dispatch] = useReducer(accountReducer, initialState);
-
   /*useEffect(() => {
     window.addEventListener("beforeunload", handleUnload);
     return () => {
@@ -72,6 +72,20 @@ export const JWTProvider = ({ children }) => {
   const logout = () => {
     setSession(null);
     dispatch({ type: LOGOUT });
+  };
+
+  const hasPermission = (permission) => {
+    console.log(permission);
+    const { user } = state;
+    console.log(user);
+    if (user && user.roles.length > 0) {
+      const foundPermissions = user.roles[0].permissions.filter(obj => obj.name === permission);
+      console.log(foundPermissions);
+      if (foundPermissions.length > 0) {
+        return true;
+      }
+    }
+    return false;
   };
 
   useEffect(() => {
@@ -118,7 +132,7 @@ export const JWTProvider = ({ children }) => {
   }
 
   return (
-    <JWTContext.Provider value={{ ...state, login, logout}}>
+    <JWTContext.Provider value={{ ...state, login, logout, hasPermission }}>
       {children}
     </JWTContext.Provider>
   );

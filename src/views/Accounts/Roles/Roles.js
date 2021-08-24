@@ -4,11 +4,13 @@ import {deleteItem, getAll} from "../../../services/Api";
 import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import { Table } from "semantic-ui-react";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 export default function Roles() {
     const [roles, setRoles] = useState([]);
     const [role, setRole] = useState([]);
     const [isBasic, setIsBasic] = useState(false);
+    const { hasPermission } = useAuth();
     const history = useHistory();
 
     const loadRoles = useCallback(async () => {
@@ -61,7 +63,7 @@ export default function Roles() {
                         <Card.Body>
                             <Row>
                                 <Col md={4}>
-                                    <Button variant="primary" onClick={routeChange}>
+                                    <Button variant="primary" onClick={routeChange} className={ hasPermission('Accounts-Roles-Create') ? undefined : 'hidden' }>
                                         <i className="feather icon-plus-circle"/>
                                         New Role
                                     </Button>
@@ -84,11 +86,11 @@ export default function Roles() {
                                                         <Table.Cell>{role.name}</Table.Cell>
                                                         <Table.Cell>{role.createdAt}</Table.Cell>
                                                         <Table.Cell>
-                                                            <Button variant="primary" onClick={() => onRoleEdit(role)}>
+                                                            <Button variant="primary" onClick={() => onRoleEdit(role)} className={ hasPermission('Accounts-Roles-Update') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-edit" />
                                                             </Button>
                                                             &nbsp;&nbsp;
-                                                            <Button variant="danger" onClick={() => onRoleDelete(role)}>
+                                                            <Button variant="danger" onClick={() => onRoleDelete(role)} className={ hasPermission('Accounts-Roles-Delete') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-trash-2" />
                                                             </Button>
                                                         </Table.Cell>
