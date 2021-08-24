@@ -87,7 +87,7 @@ export default function NewRole() {
                         <Card.Body>
                             <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Row>
-                                    <Col md={4}>
+                                    <Col md={6}>
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Name</label>
@@ -96,7 +96,10 @@ export default function NewRole() {
                                             </Form.Field>
                                         </Form.Group>
                                     </Col>
-                                    <Col md={4}>
+                                </Row>
+
+                                <Row>
+                                    <Col md={6}>
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Permissions</label>

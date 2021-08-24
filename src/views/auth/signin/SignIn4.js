@@ -24,7 +24,7 @@ const Signin4 = () => {
                                 <div className="card-body text-center">
                                     <div className="row justify-content-center">
                                         <div className="col-sm-10">
-                                            <h3 className="mb-4">Login</h3>
+                                            <h3 className="mb-4">Login to the LAMIS Portal</h3>
                                             <JWTLogin />
                                             {/*<div className="input-group mb-3">
                                                 <input type="email" className="form-control" autoComplete="new-password" placeholder="Email"/>
@@ -44,10 +44,10 @@ const Signin4 = () => {
                                         </div>
                                         <div className="col-sm-10">
                                             <div className="column">
-                                                <img src={DataFILogo} />
+                                                <img src={USAIDLogo} />
                                             </div>
                                             <div className="column">
-                                                <img src={USAIDLogo} />
+                                                <img src={DataFILogo} />
                                             </div>
                                         </div>
                                     </div>

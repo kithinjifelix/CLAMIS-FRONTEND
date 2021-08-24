@@ -113,7 +113,7 @@ export default function NewOrganisation() {
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Contact</label>
-                                                <Input {...register("contact", { required: true })} value={contact} onChange={setOrganisationContact} type="text"  />
+                                                <Input {...register("contact")} value={contact} onChange={setOrganisationContact} type="text"  />
                                                 {errors.contact && <span className="text-danger">This field is required</span>}
                                             </Form.Field>
                                         </Form.Group>
@@ -125,7 +125,7 @@ export default function NewOrganisation() {
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Email Address</label>
-                                                <Input {...register("email", { required: true })} value={email} onChange={setOrganisationEmail} type="email"  />
+                                                <Input {...register("email")} value={email} onChange={setOrganisationEmail} type="email"  />
                                                 {errors.email && <span className="text-danger">This field is required</span>}
                                             </Form.Field>
                                         </Form.Group>
@@ -135,7 +135,7 @@ export default function NewOrganisation() {
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Phone</label>
-                                                <Input {...register("phone", { required: true })} value={phone} onChange={setOrganisationPhone} type="text"  />
+                                                <Input {...register("phone")} value={phone} onChange={setOrganisationPhone} type="text"  />
                                                 {errors.phone && <span className="text-danger">This field is required</span>}
                                             </Form.Field>
                                         </Form.Group>

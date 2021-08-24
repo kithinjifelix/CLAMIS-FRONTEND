@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="hidden class">
+    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="remove default values">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/AdminLayout/NavBar/NavRight/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/AdminLayout/NavBar/NavRight/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/signin/JWTLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/signin/JWTLogin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/JWTContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/JWTContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Accounts/Organisation/NewOrganisation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Accounts/Organisation/NewOrganisation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Accounts/Roles/New-Role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Accounts/Roles/New-Role.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/signin/SignIn4.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/signin/SignIn4.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629618632703</updated>
-      <workItem from="1629618636851" duration="1287000" />
+      <workItem from="1629618636851" duration="1328000" />
+      <workItem from="1629703677334" duration="1833000" />
+      <workItem from="1629782637105" duration="2704000" />
     </task>
     <task id="LOCAL-00001" summary="hidden class">
       <created>1629640918656</created>
@@ -47,7 +51,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629640918656</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="remove default values">
+      <created>1629641179557</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1629641179557</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -63,9 +74,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hidden class" />
-    <option name="LAST_COMMIT_MESSAGE" value="hidden class" />
+    <MESSAGE value="remove default values" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove default values" />
   </component>
 </project>

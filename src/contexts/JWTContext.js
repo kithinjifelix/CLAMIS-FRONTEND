@@ -19,6 +19,8 @@ const verifyToken = (serviceToken) => {
   }
 
   const decoded = jwtDecode(serviceToken);
+  console.log(decoded);
+  console.log((Date.now()/1000));
   return decoded.exp > (Date.now() / 1000);
 };
 
@@ -40,6 +42,20 @@ const JWTContext = createContext({
 
 export const JWTProvider = ({ children }) => {
   const [state, dispatch] = useReducer(accountReducer, initialState);
+
+  /*useEffect(() => {
+    window.addEventListener("beforeunload", handleUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, []);*/
+
+  const handleUnload = (e) => {
+    const message = "o/";
+    (e || window.event).returnValue = message; //Gecko + IE
+    window.localStorage.clear();
+    return message;
+  };
 
   const login = async (email, password) => {
     const response = await axios.post(`${CONFIG.backendURI}/users/signin`, { username: email, password });
