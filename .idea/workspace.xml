@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="remove console.log">
-      <change afterPath="$PROJECT_DIR$/src/views/users/EditUserProfile.js" afterDir="false" />
+    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="User Profile">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/AdminLayout/NavBar/NavRight/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/AdminLayout/NavBar/NavRight/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Accounts/Registration/NewUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Accounts/Registration/NewUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/constant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/constant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/AdminLayout/Navigation/NavContent/NavCollapse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/AdminLayout/Navigation/NavContent/NavCollapse/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu-items.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu-items.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -54,7 +54,7 @@
       <updated>1629618632703</updated>
       <workItem from="1629618636851" duration="1328000" />
       <workItem from="1629703677334" duration="1833000" />
-      <workItem from="1629782637105" duration="11168000" />
+      <workItem from="1629782637105" duration="14782000" />
     </task>
     <task id="LOCAL-00001" summary="hidden class">
       <created>1629640918656</created>
@@ -91,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629791809491</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="User Profile">
+      <created>1629795625104</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629795625104</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +122,7 @@
     <MESSAGE value="set un-required fields" />
     <MESSAGE value="role validation" />
     <MESSAGE value="remove console.log" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove console.log" />
+    <MESSAGE value="User Profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="User Profile" />
   </component>
 </project>

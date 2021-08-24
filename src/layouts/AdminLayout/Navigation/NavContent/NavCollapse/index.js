@@ -9,9 +9,11 @@ import NavBadge from "../NavBadge";
 
 import { ConfigContext } from "../../../../../contexts/ConfigContext";
 import * as actionType from "../../../../../store/actions";
+import useAuth from "../../../../../hooks/useAuth";
 
 const NavCollapse = ({ collapse, type }) => {
     const configContext = useContext(ConfigContext);
+    const { hasPermission } = useAuth();
     const { dispatch } = configContext;
 
     const { layout, isOpen, isTrigger } = configContext.state;
@@ -32,7 +34,11 @@ const NavCollapse = ({ collapse, type }) => {
                 case 'collapse':
                     return <LoopNavCollapse key={item.id} collapse={item} type="sub" />;
                 case 'item':
-                    return <NavItem layout={layout} key={item.id} item={item}/>;
+                    if (hasPermission(item.permission)) {
+                        return <NavItem layout={layout} key={item.id} item={item} />;
+                    } else {
+                        return false;
+                    }
                 default:
                     return false;
             }

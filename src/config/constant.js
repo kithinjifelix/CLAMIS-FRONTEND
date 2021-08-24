@@ -25,21 +25,21 @@ export const CONFIG = {
     layout6Background : 'linear-gradient(to right, #A445B2 0%, #D41872 52%, #FF0066 100%)', // used only for pre-layout = layout-6
     layout6BackSize : '', // 'auto' - for background pattern, 'cover' - for background images & used only for pre-layout = layout-6
     jwt: {
-        secret: 'SECRET-KEY',
+        secret: 'JtAMYIEHfR',
         timeout: '1 days'
     },
     firebase: {
-        apiKey: "AIzaSyC9m6rMXs8PKHkJaT761AupFQdmcjQDwSY",
-        authDomain: "gradient-able-react-hook.firebaseapp.com",
-        projectId: "gradient-able-react-hook",
-        storageBucket: "gradient-able-react-hook.appspot.com",
-        messagingSenderId: "787384589233",
-        appId: "1:787384589233:web:2b57c391ac41d2d1967b90",
-        measurementId: "G-1D6ER7YWLL"
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: "",
+        measurementId: ""
     },
     auth0: {
-        client_id: 'CkaKvwheIhIQkybjTEQwN7ikcdHObsPh',
-        domain: 'dev-w0-vxep3.us.auth0.com'
+        client_id: '',
+        domain: ''
     },
     backendURI: 'http://localhost:8080/api'
 };

@@ -218,6 +218,7 @@ const menuItems = {
                             title: 'Organisations',
                             type: 'item',
                             icon: 'feather icon-layers',
+                            permission: 'Accounts-Organisations-View',
                             url: '/registration/organisations'
                         },
                         {
@@ -225,12 +226,14 @@ const menuItems = {
                             title: 'Roles',
                             type: 'item',
                             icon: 'feather icon-book',
+                            permission: 'Accounts-Roles-View',
                             url: '/registration/roles'
                         },
                         {
                             id: 'users',
                             title: 'Users',
                             type: 'item',
+                            permission: 'Accounts-Users-View',
                             icon: 'feather icon-users',
                             url: '/registration/users'
                         },
