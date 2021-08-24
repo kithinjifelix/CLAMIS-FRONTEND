@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { ListGroup, Dropdown, Media } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {ConfigContext} from "../../../../contexts/ConfigContext";
 import useAuth from '../../../../hooks/useAuth';
 
@@ -9,17 +9,21 @@ import avatar1 from '../../../../assets/images/user/avatar-1.jpg';
 const NavRight = () => {
     const configContext = useContext(ConfigContext);
     const { logout, user } = useAuth();
+    const history = useHistory();
     const { rtlLayout } = configContext.state;
 
     const [listOpen, setListOpen] = useState(false);
 
     const handleLogout = async () => {
         try {
-            //handleClose();
             await logout();
         } catch (err) {
             console.error(err);
         }
+    };
+    
+    const handleUserProfile = () => {
+        history.push('/users/edit-user-profile/' + user.id);
     };
 
     return (
@@ -39,6 +43,7 @@ const NavRight = () => {
                                 </Link>
                             </div>
                             <ListGroup as='ul' bsPrefix=' ' variant='flush' className="pro-body">
+                                <ListGroup.Item as='li' bsPrefix=' '><Link to='#' className="dropdown-item" onClick={handleUserProfile}><i className="feather icon-user"/> Profile</Link></ListGroup.Item>
                                 <ListGroup.Item as='li' bsPrefix=' '><Link to='#' className="dropdown-item" onClick={handleLogout}><i className="feather icon-log-out"/> Logout</Link></ListGroup.Item>
                             </ListGroup>
                         </Dropdown.Menu>

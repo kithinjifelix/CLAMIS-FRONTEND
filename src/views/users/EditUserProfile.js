@@ -1,15 +1,15 @@
-import React, {useCallback, useEffect, useState} from "react";
+import {useHistory, useParams} from "react-router-dom";
+import * as Yup from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm} from "react-hook-form";
+import React, {useCallback, useEffect, useState} from "react";
+import useAuth from "../../hooks/useAuth";
+import {getAll, post, put} from "../../services/Api";
+import Swal from "sweetalert2";
 import {Button, Card, Col, Row} from "react-bootstrap";
-import {getAll, post, put} from "../../../services/Api";
-import { useHistory, useParams } from "react-router-dom";
-import {Form, Input} from 'semantic-ui-react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import Swal from 'sweetalert2';
-import useAuth from "../../../hooks/useAuth";
+import {Form, Input} from "semantic-ui-react";
 
-export default function NewUser() {
+export default function EditUserProfile() {
     const params = useParams();
     // form validation rules
     const validationSchema = Yup.object().shape({
@@ -58,7 +58,7 @@ export default function NewUser() {
         }
         if (result.status === 200) {
             await Swal.fire('Success', 'Successfully registered user', 'success');
-            history.push('/registration/users');
+            history.push('/');
         } else if (result.status === 400) {
             await Swal.fire('Oops...', result.data.message, 'error');
         }
@@ -169,7 +169,7 @@ export default function NewUser() {
                 <Col>
                     <Card>
                         <Card.Header>
-                            <Card.Title as="h5">Create Account</Card.Title>
+                            <Card.Title as="h5">Edit Profile</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -240,7 +240,7 @@ export default function NewUser() {
                                 </Row>
 
                                 <Row>
-                                    <Col md={4}>
+                                    <Col md={4} className={ params.id ? 'hidden' : undefined }>
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Role</label>
@@ -276,9 +276,9 @@ export default function NewUser() {
 
                                 <Row>
                                     <Col md={4}>
-                                        <Button variant="primary" type="submit" className={ hasPermission('Accounts-Users-Create') ? undefined : 'hidden' }>
-                                            <i className="feather icon-plus-circle"/>
-                                            Submit
+                                        <Button variant="primary" type="submit">
+                                            <i className="feather icon-user"/>
+                                            Update
                                         </Button>
                                     </Col>
                                 </Row>

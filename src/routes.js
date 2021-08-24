@@ -173,7 +173,8 @@ const routes = [
       {
         exact: true,
         path: '/app/dashboard/default',
-        component: lazy(() => import('./views/dashboard/DashDefault'))
+        component: lazy(() => import('./views/dashboard/DashDefault')),
+
       },
       {
         exact: true,
@@ -788,6 +789,12 @@ const routes = [
         exact: true,
         name: 'New Role',
         component: lazy(() => import('./views/Accounts/Roles/New-Role'))
+      },
+      {
+        path: '/users/edit-user-profile/:id',
+        exact: true,
+        name: 'Edit User Profile',
+        component: lazy(() => import('./views/users/EditUserProfile'))
       },
       {
         path: '*',
