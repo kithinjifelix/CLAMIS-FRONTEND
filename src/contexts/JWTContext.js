@@ -75,7 +75,7 @@ export const JWTProvider = ({ children }) => {
   const hasPermission = (permission) => {
     const { user } = state;
     if (user && user.roles.length > 0) {
-      const foundPermissions = user.roles[0].permissions.filter(obj => obj.name === permission);
+      const foundPermissions = user.roles[0].permissions.filter(obj => obj.name === permission || obj.name === 'ALL-Permissions');
       if (foundPermissions.length > 0) {
         return true;
       }
