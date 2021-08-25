@@ -205,7 +205,7 @@ export default function EditUserProfile() {
                                 </Row>
 
                                 <Row>
-                                    <Col md={4}>
+                                    <Col md={4} className={ params.id ? 'hidden' : undefined }>
                                         <Form.Group widths='equal'>
                                             <Form.Field>
                                                 <label>Organisation</label>

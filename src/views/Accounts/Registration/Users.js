@@ -80,7 +80,7 @@ export default function Users() {
                                                 <Table.HeaderCell>EMAIL</Table.HeaderCell>
                                                 <Table.HeaderCell>PHONE</Table.HeaderCell>
                                                 <Table.HeaderCell>DATE CREATED</Table.HeaderCell>
-                                                <Table.HeaderCell>ACTIONS</Table.HeaderCell>
+                                                <Table.HeaderCell className={ (hasPermission('Accounts-Users-Update') && hasPermission('Accounts-Users-Delete')) ? undefined : 'hidden' }>ACTIONS</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
                                         <Table.Body>
@@ -93,7 +93,7 @@ export default function Users() {
                                                         <Table.Cell>{user.email}</Table.Cell>
                                                         <Table.Cell>{user.phone}</Table.Cell>
                                                         <Table.Cell>{user.createdAt}</Table.Cell>
-                                                        <Table.Cell>
+                                                        <Table.Cell className={ (hasPermission('Accounts-Users-Update') && hasPermission('Accounts-Users-Delete')) ? undefined : 'hidden' }>
                                                             <Button variant="primary" onClick={() => onUserEdit(user)} className={ hasPermission('Accounts-Users-Update') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-edit" />
                                                             </Button>

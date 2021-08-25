@@ -76,7 +76,7 @@ export default function Roles() {
                                             <Table.Row>
                                                 <Table.HeaderCell>NAME</Table.HeaderCell>
                                                 <Table.HeaderCell>DATE CREATED</Table.HeaderCell>
-                                                <Table.HeaderCell>ACTIONS</Table.HeaderCell>
+                                                <Table.HeaderCell className={ (hasPermission('Accounts-Roles-Update') && hasPermission('Accounts-Roles-Delete')) ? undefined : 'hidden' }>ACTIONS</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
                                         <Table.Body>
@@ -85,7 +85,7 @@ export default function Roles() {
                                                     <Table.Row key={role.id}>
                                                         <Table.Cell>{role.name}</Table.Cell>
                                                         <Table.Cell>{role.createdAt}</Table.Cell>
-                                                        <Table.Cell>
+                                                        <Table.Cell className={ (hasPermission('Accounts-Roles-Update') && hasPermission('Accounts-Roles-Delete')) ? undefined : 'hidden' }>
                                                             <Button variant="primary" onClick={() => onRoleEdit(role)} className={ hasPermission('Accounts-Roles-Update') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-edit" />
                                                             </Button>

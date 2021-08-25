@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="Show and hide menus">
+    <list default="true" id="3da2b7a0-1903-4b5f-99ac-a61caa2f4ef5" name="Changes" comment="ALL-Permissions">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/JWTContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/JWTContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Accounts/Organisation/Organisations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Accounts/Organisation/Organisations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Accounts/Registration/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Accounts/Registration/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Accounts/Roles/Roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Accounts/Roles/Roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/users/EditUserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/users/EditUserProfile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +55,7 @@
       <updated>1629618632703</updated>
       <workItem from="1629618636851" duration="1328000" />
       <workItem from="1629703677334" duration="1833000" />
-      <workItem from="1629782637105" duration="15720000" />
+      <workItem from="1629782637105" duration="16430000" />
     </task>
     <task id="LOCAL-00001" summary="hidden class">
       <created>1629640918656</created>
@@ -110,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629799452015</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ALL-Permissions">
+      <created>1629879198351</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1629879198351</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +146,7 @@
     <MESSAGE value="remove console.log" />
     <MESSAGE value="User Profile" />
     <MESSAGE value="Show and hide menus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Show and hide menus" />
+    <MESSAGE value="ALL-Permissions" />
+    <option name="LAST_COMMIT_MESSAGE" value="ALL-Permissions" />
   </component>
 </project>

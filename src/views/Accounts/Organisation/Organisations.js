@@ -80,7 +80,7 @@ export default function Organisations() {
                                                 <Table.HeaderCell>EMAIL</Table.HeaderCell>
                                                 <Table.HeaderCell>PHONE</Table.HeaderCell>
                                                 <Table.HeaderCell>DATE CREATED</Table.HeaderCell>
-                                                <Table.HeaderCell>ACTIONS</Table.HeaderCell>
+                                                <Table.HeaderCell className={ (hasPermission('Accounts-Organisations-Update') && hasPermission('Accounts-Organisations-Delete')) ? undefined : 'hidden' }>ACTIONS</Table.HeaderCell>
                                             </Table.Row>
                                         </Table.Header>
                                         <Table.Body>
@@ -93,7 +93,7 @@ export default function Organisations() {
                                                         <Table.Cell>{org.email}</Table.Cell>
                                                         <Table.Cell>{org.phone}</Table.Cell>
                                                         <Table.Cell>{org.createdAt}</Table.Cell>
-                                                        <Table.Cell>
+                                                        <Table.Cell className={ (hasPermission('Accounts-Organisations-Update') && hasPermission('Accounts-Organisations-Delete')) ? undefined : 'hidden' }>
                                                             <Button variant="primary" onClick={() => onOrganisationEdit(org)} className={ hasPermission('Accounts-Organisations-Update') ? undefined : 'hidden' }>
                                                                 <i className="feather icon-edit" />
                                                             </Button>
