@@ -30,6 +30,7 @@
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.19.0",
     "bootstrap": "^4.5.3",
+    "caniuse-lite": "^1.0.30001255",
     "chart.js": "^2.9.4",
     "chroma-js": "^2.1.0",
     "cropperjs": "^1.5.9",

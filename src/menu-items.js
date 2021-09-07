@@ -203,10 +203,66 @@ const menuItems = {
         },
         {
             id: 'ui-element',
-            title: 'UI ELEMENT',
+            title: 'MODULES',
             type: 'group',
             icon: 'icon-ui',
             children: [
+                {
+                    id: 'fhir',
+                    title: 'FHIR',
+                    type: 'collapse',
+                    icon: 'feather icon-home',
+                    children: [
+                        {
+                            id: 'patients',
+                            title: 'Patients',
+                            type: 'item',
+                            icon: 'feather icon-thermometer',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        },
+                        {
+                            id: 'encounters',
+                            title: 'Encounters',
+                            type: 'item',
+                            icon: 'feather icon-file',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        },
+                        {
+                            id: 'laboratory',
+                            title: 'Laboratory',
+                            type: 'item',
+                            icon: 'feather icon-droplet',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        }
+                    ]
+                },
+                {
+                    id: 'reports&analytics',
+                    title: 'Reports & Analytics',
+                    type: 'collapse',
+                    icon: 'feather icon-bar-chart-2',
+                    children: [
+                        {
+                            id: 'dashboards',
+                            title: 'Dashboards',
+                            type: 'item',
+                            icon: 'feather icon-pie-chart',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        },
+                        {
+                            id: 'createReport',
+                            title: 'Create Report',
+                            type: 'item',
+                            icon: 'feather icon-activity',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        }
+                    ]
+                },
                 {
                     id: 'basic',
                     title: 'Accounts',
