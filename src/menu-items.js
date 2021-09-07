@@ -264,10 +264,58 @@ const menuItems = {
                     ]
                 },
                 {
-                    id: 'basic',
+                    id: 'externalPlugins',
+                    title: 'External Plugins',
+                    type: 'collapse',
+                    icon: 'feather icon-plus',
+                    children: [
+                        {
+                            id: 'app',
+                            title: 'App',
+                            type: 'item',
+                            icon: 'feather icon-aperture',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        },
+                        {
+                            id: 'download',
+                            title: 'Download',
+                            type: 'item',
+                            icon: 'feather icon-download',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        }
+                    ]
+                },
+                {
+                    id: 'security',
+                    title: 'Security',
+                    type: 'collapse',
+                    icon: 'feather icon-shield',
+                    children: [
+                        {
+                            id: 'appRegistration',
+                            title: 'App Registration',
+                            type: 'item',
+                            icon: 'feather icon-plus-square',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        },
+                        {
+                            id: 'tokens',
+                            title: 'Tokens',
+                            type: 'item',
+                            icon: 'feather icon-align-justify',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        }
+                    ]
+                },
+                {
+                    id: 'accounts',
                     title: 'Accounts',
                     type: 'collapse',
-                    icon: 'feather icon-box',
+                    icon: 'feather icon-package',
                     children: [
                         {
                             id: 'organisations',
@@ -293,6 +341,30 @@ const menuItems = {
                             icon: 'feather icon-users',
                             url: '/registration/users'
                         },
+                    ]
+                },
+                {
+                    id: 'documentation',
+                    title: 'Documentation',
+                    type: 'collapse',
+                    icon: 'feather icon-book',
+                    children: [
+                        {
+                            id: 'userManual',
+                            title: 'User Manual',
+                            type: 'item',
+                            icon: 'feather icon-command',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        },
+                        {
+                            id: 'adminGuide',
+                            title: 'Admin Guide',
+                            type: 'item',
+                            icon: 'feather icon-bookmark',
+                            permission: 'Accounts-Organisations-View',
+                            url: ''
+                        }
                     ]
                 }
             ]
