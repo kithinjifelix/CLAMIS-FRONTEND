@@ -797,6 +797,18 @@ const routes = [
         component: lazy(() => import('./views/users/EditUserProfile'))
       },
       {
+        path: '/fhir/patients',
+        exact: true,
+        name: 'Patients',
+        component: lazy(() => import('./views/FHIR/Patients/Patients'))
+      },
+      {
+        path: '/fhir/patients/:patientId',
+        exact: true,
+        name: 'Patients',
+        component: lazy(() => import('./views/FHIR/Patients/PatientDetails'))
+      },
+      {
         path: '*',
         exact: true,
         component: () => <Redirect to={BASE_URL}/>

@@ -11,6 +11,12 @@ const range = len => {
 const newPerson = () => {
   const statusChance = Math.random()
   return {
+    patientId: Math.floor(Math.random() * 10000),
+    names: namor.generate({ words: 1, numbers: 0 }),
+    dob: String(new Date()),
+    gender: 'F',
+    lastUpdated: String(new Date()),
+    url: 'http://hapi.fhir.org/baseR4/Patient/1108065',
     firstName: namor.generate({ words: 1, numbers: 0 }),
     lastName: namor.generate({ words: 1, numbers: 0 }),
     age: Math.floor(Math.random() * 30),

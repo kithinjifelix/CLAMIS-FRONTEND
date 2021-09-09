@@ -219,7 +219,7 @@ const menuItems = {
                             type: 'item',
                             icon: 'feather icon-thermometer',
                             permission: 'Accounts-Organisations-View',
-                            url: ''
+                            url: '/fhir/patients'
                         },
                         {
                             id: 'encounters',
