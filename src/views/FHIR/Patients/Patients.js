@@ -44,7 +44,7 @@ function Table({ columns, data }) {
     );
 
     function onRowClicked(row) {
-        history.push(`patients/${row.values.patientId}`);
+        history.push(`patients/${row.original.id}`);
     }
 
     return (

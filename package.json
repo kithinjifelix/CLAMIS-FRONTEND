@@ -37,6 +37,7 @@
     "deni-react-treeview": "^1.1.11",
     "echarts": "^5.0.2",
     "echarts-for-react": "^3.0.0-beta.2",
+    "fhir-react": "^0.2.4",
     "firebase": "^8.2.4",
     "formik": "^2.2.6",
     "highcharts": "^8.2.2",

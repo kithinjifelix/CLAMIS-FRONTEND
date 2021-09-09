@@ -72,6 +72,10 @@ File: style.css
 
 @import "partials/third-party/third-party";
 
+// Import optional styles
+@import "~fhir-react/build/style.css";
+@import "~fhir-react/build/bootstrap-reboot.min.css";
+
 .column {
   float: left;
   width: 50%;
